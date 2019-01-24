@@ -9,19 +9,31 @@ public class ThreeBonacci {
 
             int n = in.nextInt();
 
-            in.println(findFib(n, a0, a1, a2));
+            int[] dp = null;
+
+            if(n < 3){
+                dp = new int[3];
+            } else{
+                dp = new int[n + 1];
+            }
+
+            for(int i = 0; i < n + 1; i ++){
+                dp[i] = -1024;
+            }
+
+            dp[0] = a0;
+            dp[1] = a1;
+            dp[2] = a2;
+
+            in.println(findFib(n, a0, a1, a2, dp));
         }
     }
 
-    public static int findFib(int n, int a0, int a1, int a2){
-        if(n == 0){
-            return a0;
-        } else if(n == 1){
-            return a1;
-        } else if(n == 2){
-            return a2;
-        }
+    public static int findFib(int n, int a0, int a1, int a2, int[] dp) {
+        if(dp[n] != -1024)
+            return dp[n];
 
-        return findFib(n-1, a0, a1, a2) + findFib(n-2, a0, a1, a2) + findFib(n-3, a0, a1, a2);
+        dp[n] = findFib(n-1, a0, a1, a2, dp) + findFib(n-2, a0, a1, a2, dp) - findFib(n-3, a0, a1, a2, dp);
+        return dp[n];
     }
 }

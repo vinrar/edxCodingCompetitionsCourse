@@ -12,6 +12,10 @@ import java.util.*;
  * @author Maxim Buzdalov
  */
 public class EdxIO implements Closeable {
+
+    private EdxIO(){
+
+    }
     /**
      * Creates a default instance of EdxIO
      * which reads input from "input.txt"
